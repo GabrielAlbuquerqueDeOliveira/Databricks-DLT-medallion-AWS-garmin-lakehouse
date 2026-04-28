@@ -29,6 +29,27 @@ Languages: PySpark (ETL) and SQL (Analytics)
 
 Governance: Unity Catalog
 
+
+# 📂 Repository Structure
+
+To demonstrate a full development lifecycle, this repository contains both the exploratory prototype and the final production-ready pipeline:
+
+**Garmin_lakehouse_transformation.py (Production DLT Pipeline):** The core of the project. This script implements the automated Delta Live Tables (DLT) pipeline, using decorators (@dlt.table) and expectations to manage the Medallion architecture, data quality, and incremental loading.
+
+**Medallion_transformation.py (Exploratory Prototype):** The initial development notebook. It showcases the exploratory data analysis (EDA) and the testing phase where the logic for unit conversion, deduplication, and mapping was first validated using standard Spark.
+
+**query_sql_dashboard.txt:** Contains the final SQL logic used in the Databricks SQL Warehouse to unify the personal and benchmark datasets, including the UNION ALL and ROUND operations for the BI layer.
+
+**docs/:** Visualization assets, including the Pipeline DAG (lineage) and Dashboard previews.
+
+🚀 How to Navigate this Project
+Start with the Code: Look at garmin_lakehouse_transformation.py to see how DLT orchestrates the data flow.
+
+Review the Logic: Check Medallion_transformation.py to understand the data cleansing challenges (unit scaling and translation).
+
+Visualize the Results: Open the images in the root directory to see the architectural DAG and the final business insights.
+
+
 # 🚀 Key Engineering Features
 
 1. Incremental Ingestion with Auto Loader
