@@ -1,0 +1,19 @@
+SELECT 
+    event_date, 
+    activity_type, 
+    ROUND(total_distance_km, 2) as total_distance_km, -- Arredonda para 2 casas
+    'My Performance' as data_source
+FROM triathlon_analytics.performance_summary_gold
+
+UNION ALL
+
+SELECT 
+    cast(date as timestamp) as event_date, 
+    CASE 
+        WHEN sport_type IN ('Ride', 'VirtualRide') THEN 'Ride'
+        ELSE sport_type 
+    END as activity_type, 
+    -- Arredondando também o benchmark para manter a consistência visual
+    ROUND(standardized_distance_km, 2) as total_distance_km, 
+    'Benchmark Kaggle' as data_source
+FROM triathlon_analytics.kaggle_performance_gold
